@@ -2,16 +2,16 @@ from typing import Any
 
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 
-from app.config import get_settings
+from app.enviornment import settings
 
 _client: AsyncIOMotorClient[Any] | None = None
 
 
 def get_client() -> AsyncIOMotorClient[Any]:
+
     global _client
     if _client is None:
-        settings = get_settings()
-        _client = AsyncIOMotorClient(settings.mongodb_uri)
+        _client = AsyncIOMotorClient(settings.MONGO_URL)
     return _client
 
 
@@ -23,5 +23,4 @@ def close_client() -> None:
 
 
 def get_database() -> AsyncIOMotorDatabase[Any]:
-    settings = get_settings()
-    return get_client()[settings.mongodb_db]
+    return get_client()[settings.MONGO_URL]
