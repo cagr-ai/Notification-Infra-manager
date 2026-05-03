@@ -1,0 +1,9 @@
+{
+  "name": "api",
+  "private": true,
+  "scripts": {
+    "dev": "bash -lc 'unset POETRY_VIRTUALENVS_PATH VIRTUAL_ENV; poetry run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000'",
+    "build": "bash -lc 'unset POETRY_VIRTUALENVS_PATH VIRTUAL_ENV; poetry run python -m scripts.export_requirements'",
+    "lint": "bash -lc 'unset POETRY_VIRTUALENVS_PATH VIRTUAL_ENV; poetry install --no-interaction && poetry run python -m ruff check .'"
+  }
+}
